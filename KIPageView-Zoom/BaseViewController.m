@@ -39,8 +39,6 @@
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
         [self.pageView setLayoutMargins:UIEdgeInsetsZero];
     }
-    
-    [self.pageView setFrame:CGRectMake(10, 10, CGRectGetWidth(self.view.frame) - 20, CGRectGetHeight(self.view.frame) - 20)];
 }
 
 #pragma mark - Getters and setters
@@ -48,6 +46,8 @@
     if (_pageView == nil) {
         _pageView = [[KIPageView alloc] init];
         [_pageView setBackgroundColor:[UIColor whiteColor]];
+        
+        [_pageView setFrame:CGRectMake(10, 10, CGRectGetWidth(self.view.frame) - 20, CGRectGetHeight(self.view.frame) - 20)];
         [_pageView setDelegate:self];
     }
     return _pageView;

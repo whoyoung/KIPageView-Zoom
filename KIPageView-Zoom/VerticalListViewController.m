@@ -70,6 +70,7 @@
     if (_pageView == nil) {
         _pageView = [[KIPageView alloc] initWithOrientation:KIPageViewVertical];
         [_pageView setBackgroundColor:[UIColor whiteColor]];
+        [_pageView setFrame:CGRectMake(10, 10, CGRectGetWidth(self.view.frame) - 20, CGRectGetHeight(self.view.frame) - 20)];
         [_pageView setDelegate:self];
     }
     return _pageView;
