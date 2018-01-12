@@ -539,34 +539,55 @@
             NSLog(@"pinGesture.scale=%f",pinGesture.scale);
             NSLog(@"_changedPoint=%@,_beganPoint=%@",NSStringFromCGPoint(_changedPoint),NSStringFromCGPoint(_beganPoint));
             if (_zoomDirection == YHPageViewZoomDirectionXOrY && _changeDirection == 0) {
-                if (fabs(_changedPoint.y-_beganPoint.y) == fabs(_changedPoint.x-_beganPoint.x)) break;
+                if (fabs(_changedPoint.y-_beganPoint.y) == fabs(_changedPoint.x-_beganPoint.x)) break; //这种情况无法判断是应该缩放X轴还是Y轴
                 _changeDirection = fabs(_changedPoint.y-_beganPoint.y) > fabs(_changedPoint.x-_beganPoint.x) ? 2 : 1;
             }
             
+            CGFloat adjustScale = pinGesture.scale;
             switch (_zoomDirection) {
                 case YHPageViewZoomDirectionX: {
-                    _XRatio = _XRatio*(pinGesture.scale*_beganScrollSize.width/_scrollView.contentSize.width);
-                    _scrollView.contentSize = CGSizeMake(pinGesture.scale*_beganScrollSize.width, _scrollView.contentSize.height);
+                    if (_beganScrollSize.width < self.frame.size.width) break;
+                    if (pinGesture.scale*_beganScrollSize.width < self.frame.size.width) {
+                        adjustScale = self.frame.size.width/_beganScrollSize.width;
+                    }
+                    _XRatio = _XRatio*(adjustScale * _beganScrollSize.width/_scrollView.contentSize.width);
+                    _scrollView.contentSize = CGSizeMake(adjustScale * _beganScrollSize.width, _scrollView.contentSize.height);
                 }
                     break;
                 case YHPageViewZoomDirectionY: {
-                    _YRatio = _YRatio*(pinGesture.scale*_beganScrollSize.height/_scrollView.contentSize.height);
-                    _scrollView.contentSize = CGSizeMake(_scrollView.contentSize.width, pinGesture.scale*_beganScrollSize.height);
+                    if (_beganScrollSize.height < self.frame.size.height) break;
+                    if (pinGesture.scale*_beganScrollSize.height < self.frame.size.height) {
+                        adjustScale = self.frame.size.height/_beganScrollSize.height;
+                    }
+                    _YRatio = _YRatio*(adjustScale*_beganScrollSize.height/_scrollView.contentSize.height);
+                    _scrollView.contentSize = CGSizeMake(_scrollView.contentSize.width, adjustScale*_beganScrollSize.height);
                 }
                     break;
                 case YHPageViewZoomDirectionXAndY: {
-                    _XRatio = _XRatio*(pinGesture.scale*_beganScrollSize.width/_scrollView.contentSize.width);
+                    if (_beganScrollSize.width < self.frame.size.width || _beganScrollSize.height < self.frame.size.height) break;
+                    if (pinGesture.scale*_beganScrollSize.width < self.frame.size.width || pinGesture.scale*_beganScrollSize.height < self.frame.size.height) {
+                        adjustScale = MAX(self.frame.size.height/_beganScrollSize.height,self.frame.size.width/_beganScrollSize.width);
+                    }
+                    _XRatio = _XRatio*(adjustScale*_beganScrollSize.width/_scrollView.contentSize.width);
                     _YRatio = _XRatio;
-                    _scrollView.contentSize = CGSizeMake(pinGesture.scale*_beganScrollSize.width, pinGesture.scale*_beganScrollSize.height);
+                    _scrollView.contentSize = CGSizeMake(adjustScale*_beganScrollSize.width, pinGesture.scale*_beganScrollSize.height);
                 }
                     break;
                 case YHPageViewZoomDirectionXOrY: {
                     if (_changeDirection == 1) {
-                        _XRatio = _XRatio*(pinGesture.scale*_beganScrollSize.width/_scrollView.contentSize.width);
-                        _scrollView.contentSize = CGSizeMake(pinGesture.scale*_beganScrollSize.width, _scrollView.contentSize.height);
+                        if (_beganScrollSize.width < self.frame.size.width) break;
+                        if (pinGesture.scale*_beganScrollSize.width < self.frame.size.width) {
+                            adjustScale = self.frame.size.width/_beganScrollSize.width;
+                        }
+                        _XRatio = _XRatio*(adjustScale*_beganScrollSize.width/_scrollView.contentSize.width);
+                        _scrollView.contentSize = CGSizeMake(adjustScale*_beganScrollSize.width, _scrollView.contentSize.height);
                     } else {
-                        _YRatio = _YRatio*(pinGesture.scale*_beganScrollSize.height/_scrollView.contentSize.height);
-                        _scrollView.contentSize = CGSizeMake(_scrollView.contentSize.width, pinGesture.scale*_beganScrollSize.height);
+                        if (_beganScrollSize.height < self.frame.size.height) break;
+                        if (pinGesture.scale*_beganScrollSize.height < self.frame.size.height) {
+                            adjustScale = self.frame.size.height/_beganScrollSize.height;
+                        }
+                        _YRatio = _YRatio*(adjustScale*_beganScrollSize.height/_scrollView.contentSize.height);
+                        _scrollView.contentSize = CGSizeMake(_scrollView.contentSize.width, adjustScale*_beganScrollSize.height);
                     }
                 }
                     break;
