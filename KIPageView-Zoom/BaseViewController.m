@@ -46,7 +46,7 @@
     if (_pageView == nil) {
         _pageView = [[KIPageView alloc] init];
         [_pageView setBackgroundColor:[UIColor whiteColor]];
-        
+        _pageView.zoomDirection = YHPageViewZoomDirectionXOrY;
         [_pageView setFrame:CGRectMake(10, 10, CGRectGetWidth(self.view.frame) - 20, CGRectGetHeight(self.view.frame) - 20)];
         [_pageView setDelegate:self];
     }

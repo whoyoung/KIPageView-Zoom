@@ -47,7 +47,7 @@
 @property (nonatomic,assign) CGFloat beganPointXPercent;
 @property (nonatomic,assign) CGFloat beganPointYPercent;
 @property (nonatomic,assign) CGPoint convertPoint;
-@property (nonatomic,assign) NSUInteger changeDirection; //0：方向未确定、1：X轴方向改变、2：Y轴方向改变
+@property (nonatomic,assign) NSUInteger changeDirection; //YHPageViewZoomDirectionXOrY时，0：方向未确定、1：X轴方向缩放、2：Y轴方向缩放
 @property (nonatomic,assign) CGSize beganScrollSize;
 @end
 
@@ -521,6 +521,7 @@
 #pragma mark ********************************
 #pragma mark UIPinchGestureRecognizerDelegate
 - (void)pinGestureChange:(UIPinchGestureRecognizer *)pinGesture {
+    if (_zoomDirection == YHPageViewZoomDirectionNone) return;
     switch (pinGesture.state) {
         case UIGestureRecognizerStateBegan: {
             _changeDirection = 0;
@@ -537,26 +538,44 @@
             _changedPoint = [pinGesture locationInView:_scrollView];
             NSLog(@"pinGesture.scale=%f",pinGesture.scale);
             NSLog(@"_changedPoint=%@,_beganPoint=%@",NSStringFromCGPoint(_changedPoint),NSStringFromCGPoint(_beganPoint));
-            if (_changeDirection == 0) {
+            if (_zoomDirection == YHPageViewZoomDirectionXOrY && _changeDirection == 0) {
                 if (fabs(_changedPoint.y-_beganPoint.y) == fabs(_changedPoint.x-_beganPoint.x)) break;
-                _changeDirection = fabs(_changedPoint.y-_beganPoint.y) > fabs(_changedPoint.x-_beganPoint.x) ? 1 : 2;
+                _changeDirection = fabs(_changedPoint.y-_beganPoint.y) > fabs(_changedPoint.x-_beganPoint.x) ? 2 : 1;
             }
             
-            switch (_changeDirection) {
-                case 1: {
+            switch (_zoomDirection) {
+                case YHPageViewZoomDirectionX: {
+                    _XRatio = _XRatio*(pinGesture.scale*_beganScrollSize.width/_scrollView.contentSize.width);
+                    _scrollView.contentSize = CGSizeMake(pinGesture.scale*_beganScrollSize.width, _scrollView.contentSize.height);
+                }
+                    break;
+                case YHPageViewZoomDirectionY: {
                     _YRatio = _YRatio*(pinGesture.scale*_beganScrollSize.height/_scrollView.contentSize.height);
                     _scrollView.contentSize = CGSizeMake(_scrollView.contentSize.width, pinGesture.scale*_beganScrollSize.height);
                 }
                     break;
-                case 2: {
+                case YHPageViewZoomDirectionXAndY: {
                     _XRatio = _XRatio*(pinGesture.scale*_beganScrollSize.width/_scrollView.contentSize.width);
-                    _scrollView.contentSize = CGSizeMake(pinGesture.scale*_beganScrollSize.width, _scrollView.contentSize.height);
+                    _YRatio = _XRatio;
+                    _scrollView.contentSize = CGSizeMake(pinGesture.scale*_beganScrollSize.width, pinGesture.scale*_beganScrollSize.height);
+                }
+                    break;
+                case YHPageViewZoomDirectionXOrY: {
+                    if (_changeDirection == 1) {
+                        _XRatio = _XRatio*(pinGesture.scale*_beganScrollSize.width/_scrollView.contentSize.width);
+                        _scrollView.contentSize = CGSizeMake(pinGesture.scale*_beganScrollSize.width, _scrollView.contentSize.height);
+                    } else {
+                        _YRatio = _YRatio*(pinGesture.scale*_beganScrollSize.height/_scrollView.contentSize.height);
+                        _scrollView.contentSize = CGSizeMake(_scrollView.contentSize.width, pinGesture.scale*_beganScrollSize.height);
+                    }
                 }
                     break;
                     
                 default:
                     break;
             }
+            
+            
             [self adjustvisibleArea];
             
             NSLog(@"ratio=%ld",_changeDirection);

@@ -17,6 +17,15 @@ typedef NS_ENUM(NSUInteger, KIPageViewOrientation) {
     KIPageViewVertical   = 2,
 };
 
+#pragma mark  YHPageViewZoomDirection
+typedef NS_ENUM(NSUInteger, YHPageViewZoomDirection) {
+    YHPageViewZoomDirectionXOrY = 0,//X轴和Y轴均可缩放，但不可同时缩放
+    YHPageViewZoomDirectionX   = 1,//仅X轴可缩放
+    YHPageViewZoomDirectionY   = 2,//仅Y轴可缩放
+    YHPageViewZoomDirectionNone   = 3,//禁止缩放
+    YHPageViewZoomDirectionXAndY   = 4 //X轴和Y轴同时等比例缩放
+};
+
 #pragma mark - Protocol - KIPageViewDelegate
 @protocol KIPageViewDelegate <NSObject>
 
@@ -45,6 +54,7 @@ typedef NS_ENUM(NSUInteger, KIPageViewOrientation) {
 @property (nonatomic, assign) BOOL                      scrollEnabled;
 @property (nonatomic, assign) BOOL                      bounces;
 @property (nonatomic, assign) BOOL                      scrollsToTop;
+@property (nonatomic,assign) YHPageViewZoomDirection zoomDirection;
 
 - (instancetype)initWithOrientation:(KIPageViewOrientation)orientation;
 
