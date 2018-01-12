@@ -17,7 +17,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.dataSource addObject:@"PageViewController"];
     [self.dataSource addObject:@"HorizontalListViewController"];
     [self.dataSource addObject:@"VerticalListViewController"];
 }

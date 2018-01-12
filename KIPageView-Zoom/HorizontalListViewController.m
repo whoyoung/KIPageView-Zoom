@@ -71,7 +71,6 @@
         _pageView = [[KIPageView alloc] initWithOrientation:KIPageViewHorizontal];
         [_pageView setBackgroundColor:[UIColor whiteColor]];
         [_pageView setDelegate:self];
-        [_pageView setPagingEnabled:NO];
     }
     return _pageView;
 }

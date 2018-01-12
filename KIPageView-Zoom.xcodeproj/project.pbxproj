@@ -16,7 +16,6 @@
 		77B91575200854CA001EBB4A /* KIPageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B91572200854CA001EBB4A /* KIPageViewCell.m */; };
 		77B9157C200854D7001EBB4A /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B91576200854D7001EBB4A /* RootViewController.m */; };
 		77B9157D200854D7001EBB4A /* VerticalListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B91578200854D7001EBB4A /* VerticalListViewController.m */; };
-		77B9157E200854D7001EBB4A /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B9157A200854D7001EBB4A /* PageViewController.m */; };
 		77B915802008566C001EBB4A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B9157F2008566C001EBB4A /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -38,8 +37,6 @@
 		77B91576200854D7001EBB4A /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		77B91577200854D7001EBB4A /* VerticalListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerticalListViewController.h; sourceTree = "<group>"; };
 		77B91578200854D7001EBB4A /* VerticalListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerticalListViewController.m; sourceTree = "<group>"; };
-		77B91579200854D7001EBB4A /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
-		77B9157A200854D7001EBB4A /* PageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageViewController.m; sourceTree = "<group>"; };
 		77B9157B200854D7001EBB4A /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		77B9157F2008566C001EBB4A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,8 +73,6 @@
 			children = (
 				77B9156F200854CA001EBB4A /* KIPageView */,
 				77B9157F2008566C001EBB4A /* LaunchScreen.storyboard */,
-				77B91579200854D7001EBB4A /* PageViewController.h */,
-				77B9157A200854D7001EBB4A /* PageViewController.m */,
 				77B9157B200854D7001EBB4A /* RootViewController.h */,
 				77B91576200854D7001EBB4A /* RootViewController.m */,
 				77B91577200854D7001EBB4A /* VerticalListViewController.h */,
@@ -178,7 +173,6 @@
 			files = (
 				77B9156D200854BD001EBB4A /* BaseViewController.m in Sources */,
 				77B9157C200854D7001EBB4A /* RootViewController.m in Sources */,
-				77B9157E200854D7001EBB4A /* PageViewController.m in Sources */,
 				77B91563200853AF001EBB4A /* main.m in Sources */,
 				77B91555200853AF001EBB4A /* AppDelegate.m in Sources */,
 				77B91575200854CA001EBB4A /* KIPageViewCell.m in Sources */,
