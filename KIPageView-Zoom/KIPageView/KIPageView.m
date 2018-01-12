@@ -127,13 +127,12 @@
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [self updatePageViewItems];
+    [self updatePageViewItemsFromOffset:scrollView.contentOffset];
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     //开始拖曳的时候，暂时将timer设置无效
     [self invalidTimer];
-//    [scrollView setUserInteractionEnabled:NO];
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
@@ -143,12 +142,10 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     [self updateDidDisplayPageIndex:scrollView];
-//    [scrollView setUserInteractionEnabled:YES];
 }
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
     [self updateDidDisplayPageIndex:scrollView];
-//    [scrollView setUserInteractionEnabled:YES];
 }
 
 #pragma mark - Methods
@@ -321,11 +318,6 @@
                 width += [self scaledRect:[self.rectForItems objectAtIndex:i]].size.width;
             }
         }
-        
-        if (![self infinitable]) {
-//            [self.scrollView setAlwaysBounceHorizontal:self.pageViewOrientation==KIPageViewHorizontal];
-//            [self.scrollView setAlwaysBounceVertical:self.pageViewOrientation==KIPageViewVertical];
-        }
     }
     [self.scrollView setContentSize:CGSizeMake(width, height)];
 }
@@ -334,17 +326,8 @@
     if ([self indexOutOfBounds:index]) {
         return CGRectZero;
     }
-//    CGRect rect = CGRectFromString([self.rectForItems objectAtIndex:index]);
     CGRect rect = [self scaledRect:[self.rectForItems objectAtIndex:index]];
     return rect;
-//    CGFloat x = 0, y = 0;
-//    if (self.pageViewOrientation == KIPageViewVertical) {
-//        y = ([self height] + self.itemMargin) * index;
-//    } else {
-//        x = ([self width] + self.itemMargin) * index;
-//    }
-//    CGRect rect = CGRectMake(x, y, [self width], [self height]);
-//    return rect;
 }
 
 - (NSInteger)indexOfPageViewCell:(KIPageViewCell *)cell {
@@ -558,10 +541,6 @@
         return ;
     }
     
-//    KIPageViewCell *cell = [self pageViewCellAtIndex:index];
-//    
-//    [cell setSelected:YES animated:animated];
-    
     KIPageViewCell *cell = [self pageViewCellInVisibleListAtIndex:index];
     if (cell != nil) {
         [cell setSelected:YES animated:animated];
@@ -622,16 +601,6 @@
 #pragma mark 【重新加载数据】
 #pragma mark **************************************************
 - (void)reloadData {
-//    [self.visibleItems enumerateObjectsUsingBlock:^(KIPageViewCell *item, BOOL * _Nonnull stop) {
-//        [item removeFromSuperview];
-//    }];
-//    [self.recycledItems enumerateObjectsUsingBlock:^(KIPageViewCell *item, BOOL * _Nonnull stop) {
-//        [item removeFromSuperview];
-//    }];
-//    [self.visibleItems removeAllObjects];
-//    [self.recycledItems removeAllObjects];
-//    [self.reusableItems removeAllObjects];
-//    
     [self setSelectedIndex:-1];
     [self setTotalPages:0];
     [self setPageIndexForCellInVisibileList:-1];
@@ -641,12 +610,9 @@
     
     [self updateRectForCells];
     [self updateContentSize];
-    [self updatePageViewItems];
+    [self updatePageViewItemsFromOffset:_scrollView.contentOffset];
     
     [self scrollToPageViewCellAtIndex:0 animated:NO init:YES];
-    
-    //    [self.scrollView setContentOffset:CGPointMake(0, 0) animated:NO];
-    //    [self updateDisplayingPageIndex:self.scrollView];
 }
 
 - (void)reloadDataAndScrollToIndex:(NSInteger)index {
@@ -659,56 +625,11 @@
     [self updateRectForCells];
     
     [self updateContentSize];
-    [self updatePageViewItems];
+    [self updatePageViewItemsFromOffset:self.scrollView.contentOffset];
     
     [self reloadVisibleItems];
     
     [self scrollToPageViewCellAtIndex:index animated:NO init:YES];
-}
-
-- (void)updatePageViewItems {
-    CGPoint offset = self.scrollView.contentOffset;
-    
-    if (offset.x < 0 || offset.y < 0) {
-        return ;
-    }
-    
-    NSUInteger firstNeededPageIndex = 0;
-    NSUInteger lastNeededPageIndex = 0;
-    if (self.scrollView.pagingEnabled) {
-        CGRect visibleBounds = self.scrollView.bounds;
-        if (CGRectIsEmpty(visibleBounds)) {
-            return ;
-        }
-        
-        if (self.pageViewOrientation == KIPageViewVertical) {
-            firstNeededPageIndex = floorf(CGRectGetMinY(visibleBounds) / CGRectGetHeight(visibleBounds));
-            lastNeededPageIndex  = floorf((CGRectGetMaxY(visibleBounds)-1) / CGRectGetHeight(visibleBounds));
-        } else {
-            firstNeededPageIndex = floorf(CGRectGetMinX(visibleBounds) / CGRectGetWidth(visibleBounds));
-            lastNeededPageIndex  = floorf((CGRectGetMaxX(visibleBounds)-1) / CGRectGetWidth(visibleBounds));
-        }
-        
-        firstNeededPageIndex = MAX(firstNeededPageIndex, 0);
-        lastNeededPageIndex  = MIN(lastNeededPageIndex, [self numberWithInfinitCells] - 1);
-    } else {
-        CGFloat referValue = self.pageViewOrientation == KIPageViewVertical ? offset.y : offset.x;
-        
-        firstNeededPageIndex = [self halfSearchFirst:firstNeededPageIndex rightIndex:[self numberWithInfinitCells] referValue:referValue];
-        //最后一项的index
-        CGRect leftRect = [self scaledRect:[self.rectForItems objectAtIndex:firstNeededPageIndex]];
-        CGFloat leftValue = self.pageViewOrientation == KIPageViewVertical ? leftRect.origin.y : leftRect.origin.x;
-        CGFloat rightValue = self.pageViewOrientation == KIPageViewVertical ? self.bounds.size.height : self.bounds.size.width;
-        lastNeededPageIndex = [self halfSearchLast:firstNeededPageIndex rightIndex:[self numberWithInfinitCells] leftReferValue:leftValue referValue:rightValue];
-        
-        firstNeededPageIndex = MAX(firstNeededPageIndex, 0);
-        lastNeededPageIndex  = MIN(lastNeededPageIndex, [self numberWithInfinitCells]-1);
-    }
-    
-    [self setPageIndexForCellInVisibileList:firstNeededPageIndex];
-    
-    [self recycleItemsWithoutIndex:firstNeededPageIndex toIndex:lastNeededPageIndex];
-    [self reloadItemAtIndex:firstNeededPageIndex toIndex:lastNeededPageIndex];
 }
 
 - (void)recycleItemsWithoutIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex {
@@ -878,8 +799,6 @@
                 default:
                     break;
             }
-//            _YRatio = _changeDirection == 1 ? _YRatio*(pinGesture.scale*_beganScrollSize.height/_scrollView.contentSize.height) : _YRatio;
-//            _XRatio = _changeDirection == 1 ? _XRatio : _XRatio*(pinGesture.scale*_beganScrollSize.width/_scrollView.contentSize.width);
             [self adjustvisibleArea];
             
             NSLog(@"ratio=%ld",_changeDirection);

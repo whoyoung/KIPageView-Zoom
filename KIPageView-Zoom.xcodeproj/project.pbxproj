@@ -74,8 +74,8 @@
 		77B91552200853AF001EBB4A /* KIPageView-Zoom */ = {
 			isa = PBXGroup;
 			children = (
-				77B9157F2008566C001EBB4A /* LaunchScreen.storyboard */,
 				77B9156F200854CA001EBB4A /* KIPageView */,
+				77B9157F2008566C001EBB4A /* LaunchScreen.storyboard */,
 				77B91579200854D7001EBB4A /* PageViewController.h */,
 				77B9157A200854D7001EBB4A /* PageViewController.m */,
 				77B9157B200854D7001EBB4A /* RootViewController.h */,
@@ -99,9 +99,9 @@
 			isa = PBXGroup;
 			children = (
 				77B91570200854CA001EBB4A /* KIPageViewCell.h */,
-				77B91571200854CA001EBB4A /* KIPageView.m */,
 				77B91572200854CA001EBB4A /* KIPageViewCell.m */,
 				77B91573200854CA001EBB4A /* KIPageView.h */,
+				77B91571200854CA001EBB4A /* KIPageView.m */,
 			);
 			path = KIPageView;
 			sourceTree = "<group>";
