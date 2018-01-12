@@ -1,0 +1,352 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		77B91555200853AF001EBB4A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B91554200853AF001EBB4A /* AppDelegate.m */; };
+		77B9155D200853AF001EBB4A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77B9155C200853AF001EBB4A /* Assets.xcassets */; };
+		77B91563200853AF001EBB4A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B91562200853AF001EBB4A /* main.m */; };
+		77B9156D200854BD001EBB4A /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B91569200854BD001EBB4A /* BaseViewController.m */; };
+		77B9156E200854BD001EBB4A /* HorizontalListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B9156A200854BD001EBB4A /* HorizontalListViewController.m */; };
+		77B91574200854CA001EBB4A /* KIPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B91571200854CA001EBB4A /* KIPageView.m */; };
+		77B91575200854CA001EBB4A /* KIPageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B91572200854CA001EBB4A /* KIPageViewCell.m */; };
+		77B9157C200854D7001EBB4A /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B91576200854D7001EBB4A /* RootViewController.m */; };
+		77B9157D200854D7001EBB4A /* VerticalListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B91578200854D7001EBB4A /* VerticalListViewController.m */; };
+		77B9157E200854D7001EBB4A /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B9157A200854D7001EBB4A /* PageViewController.m */; };
+		77B915802008566C001EBB4A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B9157F2008566C001EBB4A /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		77B91550200853AF001EBB4A /* KIPageView-Zoom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KIPageView-Zoom.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		77B91553200853AF001EBB4A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		77B91554200853AF001EBB4A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		77B9155C200853AF001EBB4A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		77B91561200853AF001EBB4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		77B91562200853AF001EBB4A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		77B91569200854BD001EBB4A /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		77B9156A200854BD001EBB4A /* HorizontalListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalListViewController.m; sourceTree = "<group>"; };
+		77B9156B200854BD001EBB4A /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		77B9156C200854BD001EBB4A /* HorizontalListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizontalListViewController.h; sourceTree = "<group>"; };
+		77B91570200854CA001EBB4A /* KIPageViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KIPageViewCell.h; sourceTree = "<group>"; };
+		77B91571200854CA001EBB4A /* KIPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KIPageView.m; sourceTree = "<group>"; };
+		77B91572200854CA001EBB4A /* KIPageViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KIPageViewCell.m; sourceTree = "<group>"; };
+		77B91573200854CA001EBB4A /* KIPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KIPageView.h; sourceTree = "<group>"; };
+		77B91576200854D7001EBB4A /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		77B91577200854D7001EBB4A /* VerticalListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerticalListViewController.h; sourceTree = "<group>"; };
+		77B91578200854D7001EBB4A /* VerticalListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerticalListViewController.m; sourceTree = "<group>"; };
+		77B91579200854D7001EBB4A /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
+		77B9157A200854D7001EBB4A /* PageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageViewController.m; sourceTree = "<group>"; };
+		77B9157B200854D7001EBB4A /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		77B9157F2008566C001EBB4A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		77B9154D200853AF001EBB4A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		77B91547200853AF001EBB4A = {
+			isa = PBXGroup;
+			children = (
+				77B91552200853AF001EBB4A /* KIPageView-Zoom */,
+				77B91551200853AF001EBB4A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		77B91551200853AF001EBB4A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				77B91550200853AF001EBB4A /* KIPageView-Zoom.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		77B91552200853AF001EBB4A /* KIPageView-Zoom */ = {
+			isa = PBXGroup;
+			children = (
+				77B9157F2008566C001EBB4A /* LaunchScreen.storyboard */,
+				77B9156F200854CA001EBB4A /* KIPageView */,
+				77B91579200854D7001EBB4A /* PageViewController.h */,
+				77B9157A200854D7001EBB4A /* PageViewController.m */,
+				77B9157B200854D7001EBB4A /* RootViewController.h */,
+				77B91576200854D7001EBB4A /* RootViewController.m */,
+				77B91577200854D7001EBB4A /* VerticalListViewController.h */,
+				77B91578200854D7001EBB4A /* VerticalListViewController.m */,
+				77B9156B200854BD001EBB4A /* BaseViewController.h */,
+				77B91569200854BD001EBB4A /* BaseViewController.m */,
+				77B9156C200854BD001EBB4A /* HorizontalListViewController.h */,
+				77B9156A200854BD001EBB4A /* HorizontalListViewController.m */,
+				77B91553200853AF001EBB4A /* AppDelegate.h */,
+				77B91554200853AF001EBB4A /* AppDelegate.m */,
+				77B9155C200853AF001EBB4A /* Assets.xcassets */,
+				77B91561200853AF001EBB4A /* Info.plist */,
+				77B91562200853AF001EBB4A /* main.m */,
+			);
+			path = "KIPageView-Zoom";
+			sourceTree = "<group>";
+		};
+		77B9156F200854CA001EBB4A /* KIPageView */ = {
+			isa = PBXGroup;
+			children = (
+				77B91570200854CA001EBB4A /* KIPageViewCell.h */,
+				77B91571200854CA001EBB4A /* KIPageView.m */,
+				77B91572200854CA001EBB4A /* KIPageViewCell.m */,
+				77B91573200854CA001EBB4A /* KIPageView.h */,
+			);
+			path = KIPageView;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		77B9154F200853AF001EBB4A /* KIPageView-Zoom */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 77B91566200853AF001EBB4A /* Build configuration list for PBXNativeTarget "KIPageView-Zoom" */;
+			buildPhases = (
+				77B9154C200853AF001EBB4A /* Sources */,
+				77B9154D200853AF001EBB4A /* Frameworks */,
+				77B9154E200853AF001EBB4A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "KIPageView-Zoom";
+			productName = "KIPageView-Zoom";
+			productReference = 77B91550200853AF001EBB4A /* KIPageView-Zoom.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		77B91548200853AF001EBB4A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "杨虎";
+				TargetAttributes = {
+					77B9154F200853AF001EBB4A = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 77B9154B200853AF001EBB4A /* Build configuration list for PBXProject "KIPageView-Zoom" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 77B91547200853AF001EBB4A;
+			productRefGroup = 77B91551200853AF001EBB4A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				77B9154F200853AF001EBB4A /* KIPageView-Zoom */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		77B9154E200853AF001EBB4A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77B9155D200853AF001EBB4A /* Assets.xcassets in Resources */,
+				77B915802008566C001EBB4A /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		77B9154C200853AF001EBB4A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77B9156D200854BD001EBB4A /* BaseViewController.m in Sources */,
+				77B9157C200854D7001EBB4A /* RootViewController.m in Sources */,
+				77B9157E200854D7001EBB4A /* PageViewController.m in Sources */,
+				77B91563200853AF001EBB4A /* main.m in Sources */,
+				77B91555200853AF001EBB4A /* AppDelegate.m in Sources */,
+				77B91575200854CA001EBB4A /* KIPageViewCell.m in Sources */,
+				77B9156E200854BD001EBB4A /* HorizontalListViewController.m in Sources */,
+				77B9157D200854D7001EBB4A /* VerticalListViewController.m in Sources */,
+				77B91574200854CA001EBB4A /* KIPageView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		77B91564200853AF001EBB4A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		77B91565200853AF001EBB4A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		77B91567200853AF001EBB4A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7EZ23W2MEV;
+				INFOPLIST_FILE = "KIPageView-Zoom/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yanghu.KIPageView-Zoom";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		77B91568200853AF001EBB4A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7EZ23W2MEV;
+				INFOPLIST_FILE = "KIPageView-Zoom/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yanghu.KIPageView-Zoom";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		77B9154B200853AF001EBB4A /* Build configuration list for PBXProject "KIPageView-Zoom" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77B91564200853AF001EBB4A /* Debug */,
+				77B91565200853AF001EBB4A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		77B91566200853AF001EBB4A /* Build configuration list for PBXNativeTarget "KIPageView-Zoom" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77B91567200853AF001EBB4A /* Debug */,
+				77B91568200853AF001EBB4A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 77B91548200853AF001EBB4A /* Project object */;
+}
