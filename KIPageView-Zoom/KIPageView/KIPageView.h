@@ -12,7 +12,7 @@
 @class KIPageView;
 
 #pragma mark - Typedef - KIPageViewOrientation
-typedef NS_OPTIONS(NSUInteger, KIPageViewOrientation) {
+typedef NS_ENUM(NSUInteger, KIPageViewOrientation) {
     KIPageViewHorizontal = 1,
     KIPageViewVertical   = 2,
 };
