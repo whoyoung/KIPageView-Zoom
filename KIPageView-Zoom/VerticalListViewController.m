@@ -72,6 +72,7 @@
         [_pageView setBackgroundColor:[UIColor whiteColor]];
         _pageView.zoomDirection = YHPageViewZoomDirectionXAndY;
         [_pageView setFrame:CGRectMake(10, 10, CGRectGetWidth(self.view.frame) - 20, CGRectGetHeight(self.view.frame) - 20 -64)];
+        _pageView.cellMargin = 10;
         [_pageView setDelegate:self];
     }
     return _pageView;

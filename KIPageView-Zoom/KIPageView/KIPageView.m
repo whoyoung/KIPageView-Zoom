@@ -120,6 +120,7 @@
     [self setClipsToBounds:YES];
     self.XRatio = 1.0;
     self.YRatio = 1.0;
+    _cellMargin = 0;
     _changeDirection = 0;
 }
 
@@ -197,10 +198,12 @@
         CGRect rect;
         if (self.pageViewOrientation == KIPageViewVertical) {
             height = [self heightForCellAtIndex:i];
+            y += _cellMargin/2;
             rect = CGRectMake(x, y, width, height);
             y += height;
         } else {
             width = [self widthForCellAtIndex:i];
+            x += _cellMargin/2;
             rect = CGRectMake(x, y, width, height);
             x += width;
         }
@@ -218,14 +221,17 @@
     } else {
         height = [self height] * _YRatio;
     }
-    for (int i=0; i<[self numberWithInfinitCells]; i++) {
-        if (self.pageViewOrientation == KIPageViewVertical) {
-            height += [self scaledRect:[self.rectForItems objectAtIndex:i]].size.height;
-        } else {
-            width += [self scaledRect:[self.rectForItems objectAtIndex:i]].size.width;
-        }
+
+    CGFloat totalWidth = 0, totalHeight = 0;
+    CGRect lastRect = [self scaledRect:[self.rectForItems objectAtIndex:[self numberWithInfinitCells]-1]];
+    if (self.pageViewOrientation == KIPageViewVertical) {
+        totalHeight += lastRect.origin.y + lastRect.size.height + _cellMargin/2*_YRatio;
+        totalWidth = lastRect.size.width;
+    } else {
+        totalWidth += lastRect.origin.x + lastRect.size.width + _cellMargin/2*_XRatio;
+        totalHeight = lastRect.size.height;
     }
-    [self.scrollView setContentSize:CGSizeMake(width, height)];
+    [self.scrollView setContentSize:CGSizeMake(totalWidth, totalHeight)];
 }
 
 - (CGRect)rectForPageViewCellAtIndex:(NSInteger)index {
@@ -564,13 +570,13 @@
                 }
                     break;
                 case YHPageViewZoomDirectionXAndY: {
-                    if (_beganScrollSize.width < self.frame.size.width || _beganScrollSize.height < self.frame.size.height) break;
+                    if (pinGesture.scale < 1 && (_beganScrollSize.width < self.frame.size.width || _beganScrollSize.height < self.frame.size.height)) break;
                     if (pinGesture.scale*_beganScrollSize.width < self.frame.size.width || pinGesture.scale*_beganScrollSize.height < self.frame.size.height) {
                         adjustScale = MAX(self.frame.size.height/_beganScrollSize.height,self.frame.size.width/_beganScrollSize.width);
                     }
                     _XRatio = _XRatio*(adjustScale*_beganScrollSize.width/_scrollView.contentSize.width);
                     _YRatio = _XRatio;
-                    _scrollView.contentSize = CGSizeMake(adjustScale*_beganScrollSize.width, pinGesture.scale*_beganScrollSize.height);
+                    _scrollView.contentSize = CGSizeMake(adjustScale*_beganScrollSize.width, adjustScale*_beganScrollSize.height);
                 }
                     break;
                 case YHPageViewZoomDirectionXOrY: {
@@ -604,8 +610,7 @@
         }
             break;
         case UIGestureRecognizerStateEnded: {
-            CGPoint endPoint = [pinGesture locationInView:_scrollView];
-            NSLog(@"Ended:%f,%f",endPoint.x,endPoint.y);
+            
         }
             break;
             
@@ -630,7 +635,7 @@
     //第一项的index
     firstNeededPageIndex = 0;
     CGFloat referValue = self.pageViewOrientation == KIPageViewVertical ? offset.y : offset.x;
-    firstNeededPageIndex = [self halfSearchFirst:firstNeededPageIndex rightIndex:[self numberWithInfinitCells] referValue:referValue];
+    firstNeededPageIndex = [self halfSearchFirst:firstNeededPageIndex rightIndex:[self numberWithInfinitCells]-1 referValue:referValue];
     //最后一项的index
     CGRect lastRect = [self scaledRect:[self.rectForItems objectAtIndex:firstNeededPageIndex]];
     CGFloat leftValue = self.pageViewOrientation == KIPageViewVertical ? lastRect.origin.y : lastRect.origin.x;
@@ -647,40 +652,44 @@
 }
 
 - (NSInteger)halfSearchFirst:(NSInteger)leftIndex rightIndex:(NSInteger)rightIndex referValue:(CGFloat)referValue {
+    if (leftIndex == rightIndex) return leftIndex;
     NSInteger midIndex = (leftIndex + rightIndex)/2;
     CGRect rect = [self scaledRect:[self.rectForItems objectAtIndex:midIndex]];
     CGFloat min = 0, max = 0;
     if (self.pageViewOrientation == KIPageViewVertical) {
-        min = rect.origin.y;
-        max = min + rect.size.height;
+        min = rect.origin.y - _cellMargin/2;
+        max = min + rect.size.height + _cellMargin/2;
     } else {
-        min = rect.origin.x;
-        max = min + rect.size.width;
+        min = rect.origin.x - _cellMargin/2;
+        max = min + rect.size.width + _cellMargin/2;
     }
     if (min <= referValue && max > referValue) {
         return midIndex;
     } else if (min < referValue) {
         return [self halfSearchFirst:midIndex+1 rightIndex:rightIndex referValue:referValue];
     } else {
+        if (midIndex == 0) return 0;
         return [self halfSearchFirst:leftIndex rightIndex:midIndex-1 referValue:referValue];
     }
 }
 - (NSInteger)halfSearchLast:(NSInteger)leftIndex rightIndex:(NSInteger)rightIndex leftReferValue:(CGFloat)leftValue referValue:(CGFloat)referValue {
+    if (leftIndex == rightIndex) return leftIndex;
     NSInteger midIndex = (leftIndex + rightIndex)/2;
     CGRect rect = [self scaledRect:[self.rectForItems objectAtIndex:midIndex]];
     CGFloat min = 0, max = 0;
     if (self.pageViewOrientation == KIPageViewVertical) {
-        min = rect.origin.y;
-        max = min + rect.size.height;
+        min = rect.origin.y - _cellMargin/2;
+        max = min + rect.size.height + _cellMargin/2;
     } else {
-        min = rect.origin.x;
-        max = min + rect.size.width;
+        min = rect.origin.x - _cellMargin/2;
+        max = min + rect.size.width + _cellMargin/2;
     }
     if (min-leftValue <= referValue && max-leftValue > referValue) {
         return midIndex+1;
     } else if (min-leftValue < referValue) {
         return [self halfSearchLast:midIndex+1 rightIndex:rightIndex leftReferValue:leftValue referValue:referValue];
     } else {
+        if (midIndex == 0) return 0;
         return [self halfSearchLast:leftIndex rightIndex:midIndex-1 leftReferValue:leftValue referValue:referValue];
     }
 }

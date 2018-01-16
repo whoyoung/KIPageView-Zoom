@@ -55,6 +55,7 @@ typedef NS_ENUM(NSUInteger, YHPageViewZoomDirection) {
 @property (nonatomic, assign) BOOL                      bounces;
 @property (nonatomic, assign) BOOL                      scrollsToTop;
 @property (nonatomic,assign) YHPageViewZoomDirection zoomDirection;
+@property (nonatomic, assign) CGFloat cellMargin;
 
 - (instancetype)initWithOrientation:(KIPageViewOrientation)orientation;
 
