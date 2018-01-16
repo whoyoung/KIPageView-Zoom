@@ -552,7 +552,7 @@
             CGFloat adjustScale = pinGesture.scale;
             switch (_zoomDirection) {
                 case YHPageViewZoomDirectionX: {
-                    if (_beganScrollSize.width < self.frame.size.width) break;
+                    if (pinGesture.scale < 1 && _beganScrollSize.width < self.frame.size.width) break;
                     if (pinGesture.scale*_beganScrollSize.width < self.frame.size.width) {
                         adjustScale = self.frame.size.width/_beganScrollSize.width;
                     }
@@ -561,7 +561,7 @@
                 }
                     break;
                 case YHPageViewZoomDirectionY: {
-                    if (_beganScrollSize.height < self.frame.size.height) break;
+                    if (pinGesture.scale < 1 && _beganScrollSize.height < self.frame.size.height) break;
                     if (pinGesture.scale*_beganScrollSize.height < self.frame.size.height) {
                         adjustScale = self.frame.size.height/_beganScrollSize.height;
                     }
@@ -581,14 +581,14 @@
                     break;
                 case YHPageViewZoomDirectionXOrY: {
                     if (_changeDirection == 1) {
-                        if (_beganScrollSize.width < self.frame.size.width) break;
+                        if (pinGesture.scale < 1 && _beganScrollSize.width < self.frame.size.width) break;
                         if (pinGesture.scale*_beganScrollSize.width < self.frame.size.width) {
                             adjustScale = self.frame.size.width/_beganScrollSize.width;
                         }
                         _XRatio = _XRatio*(adjustScale*_beganScrollSize.width/_scrollView.contentSize.width);
                         _scrollView.contentSize = CGSizeMake(adjustScale*_beganScrollSize.width, _scrollView.contentSize.height);
                     } else {
-                        if (_beganScrollSize.height < self.frame.size.height) break;
+                        if (pinGesture.scale < 1 && _beganScrollSize.height < self.frame.size.height) break;
                         if (pinGesture.scale*_beganScrollSize.height < self.frame.size.height) {
                             adjustScale = self.frame.size.height/_beganScrollSize.height;
                         }
@@ -623,6 +623,9 @@
     [self updatePageViewItemsFromOffset:adjustP];
     [self reloadVisibleItems];
     [self.scrollView setContentOffset:adjustP animated:NO];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(pageView:didZoomingXRatio:YRatio:)]) {
+        [self.delegate pageView:self didZoomingXRatio:_XRatio YRatio:_YRatio];
+    }
 }
 - (void)updatePageViewItemsFromOffset:(CGPoint)offset {
     if (offset.x < 0 || offset.y < 0) {
@@ -666,6 +669,7 @@
     if (min <= referValue && max > referValue) {
         return midIndex;
     } else if (min < referValue) {
+        if (midIndex == rightIndex) return rightIndex;
         return [self halfSearchFirst:midIndex+1 rightIndex:rightIndex referValue:referValue];
     } else {
         if (midIndex == 0) return 0;

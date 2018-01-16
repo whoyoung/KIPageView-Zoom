@@ -65,6 +65,9 @@
     NSLog(@"取消选中 %ld", index);
 }
 
+- (void)pageView:(KIPageView *)pageView didZoomingXRatio:(CGFloat)xRatio YRatio:(CGFloat)yRatio {
+    NSLog(@"xRatio=%f,yRatio=%f",xRatio,yRatio);
+}
 #pragma mark - Getters and setters
 - (KIPageView *)pageView {
     if (_pageView == nil) {
