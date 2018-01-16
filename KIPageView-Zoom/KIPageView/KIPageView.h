@@ -80,4 +80,5 @@ typedef NS_ENUM(NSUInteger, YHPageViewZoomDirection) {
 
 - (void)reloadData;
 
+- (void)updateZoomXRatio:(CGFloat)xRatio YRatio:(CGFloat)yRatio contentOffset:(CGPoint)offset;
 @end

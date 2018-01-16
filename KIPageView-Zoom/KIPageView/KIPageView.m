@@ -627,6 +627,7 @@
         [self.delegate pageView:self didZoomingXRatio:_XRatio YRatio:_YRatio];
     }
 }
+
 - (void)updatePageViewItemsFromOffset:(CGPoint)offset {
     if (offset.x < 0 || offset.y < 0) {
         return ;
@@ -784,5 +785,11 @@
 - (void)setScrollsToTop:(BOOL)scrollsToTop {
     [self.scrollView setScrollsToTop:scrollsToTop];
 }
-
+- (void)updateZoomXRatio:(CGFloat)xRatio YRatio:(CGFloat)yRatio contentOffset:(CGPoint)offset {
+    _XRatio = xRatio;
+    _YRatio = yRatio;
+    [self updatePageViewItemsFromOffset:offset];
+    [self reloadVisibleItems];
+    [self.scrollView setContentOffset:offset animated:NO];
+}
 @end
