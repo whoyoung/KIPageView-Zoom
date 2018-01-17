@@ -692,6 +692,7 @@
     if (min-leftValue <= referValue && max-leftValue > referValue) {
         return midIndex+1;
     } else if (min-leftValue < referValue) {
+        if (midIndex == rightIndex) return rightIndex;
         return [self halfSearchLast:midIndex+1 rightIndex:rightIndex leftReferValue:leftValue referValue:referValue];
     } else {
         if (midIndex == 0) return 0;

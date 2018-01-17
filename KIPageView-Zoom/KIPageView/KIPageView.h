@@ -50,7 +50,7 @@ typedef NS_ENUM(NSUInteger, YHPageViewZoomDirection) {
 #pragma mark - Interface - KIPageView
 @interface KIPageView : UIView
 
-@property (nonatomic, assign) id<KIPageViewDelegate>    delegate;
+@property (nonatomic, weak) id<KIPageViewDelegate>    delegate;
 
 @property (nonatomic, assign) BOOL                      scrollEnabled;
 @property (nonatomic, assign) BOOL                      bounces;
