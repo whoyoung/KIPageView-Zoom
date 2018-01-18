@@ -513,8 +513,8 @@
     if (_scrollView == nil) {
         _scrollView = [[UIScrollView alloc] init];
         [_scrollView setDelegate:self];
-        [_scrollView setShowsHorizontalScrollIndicator:YES];
-        [_scrollView setShowsVerticalScrollIndicator:YES];
+        [_scrollView setShowsHorizontalScrollIndicator:self.showsHorizontalScrollIndicator];
+        [_scrollView setShowsVerticalScrollIndicator:self.showsVerticalScrollIndicator];
         [_scrollView setBackgroundColor:[UIColor clearColor]];
         [_scrollView setDelaysContentTouches:NO];
         _scrollView.bounces = NO;

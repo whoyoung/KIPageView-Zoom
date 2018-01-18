@@ -57,6 +57,8 @@ typedef NS_ENUM(NSUInteger, YHPageViewZoomDirection) {
 @property (nonatomic, assign) BOOL                      scrollsToTop;
 @property (nonatomic,assign) YHPageViewZoomDirection zoomDirection;
 @property (nonatomic, assign) CGFloat cellMargin;
+@property (nonatomic, assign) BOOL showsHorizontalScrollIndicator;
+@property (nonatomic, assign) BOOL showsVerticalScrollIndicator;
 
 - (instancetype)initWithOrientation:(KIPageViewOrientation)orientation;
 
